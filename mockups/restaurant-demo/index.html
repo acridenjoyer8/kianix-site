@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noma & Thyme — Modern Mediterranean Kitchen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #F8F5F0;
+      --dark: #1A1814;
+      --wine: #8B3A3A;
+      --sage: #7A8B6F;
+      --cream: #EDE8DF;
+      --muted: #8C857A;
+      --border: #DDD6CA;
+      --display: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Outfit', system-ui, sans-serif;
+    }
+    html { font-size: 16px; scroll-behavior: smooth; background: var(--bg); color: var(--dark); }
+    body { font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: var(--wine); color: var(--bg); }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(248,245,240,0.92); backdrop-filter: blur(20px); }
+    .nav-logo { font-family: var(--display); font-size: 1.5rem; font-weight: 300; color: var(--dark); text-decoration: none; letter-spacing: 0.05em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-cta { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bg); background: var(--dark); text-decoration: none; padding: 0.7rem 1.5rem; transition: background 0.3s; }
+    .nav-cta:hover { background: var(--wine); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; position: relative; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: var(--cream); clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); z-index: -1; }
+    .hero-inner { max-width: 700px; }
+    .hero-tag { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: var(--wine); margin-bottom: 2rem; }
+    .hero h1 { font-family: var(--display); font-weight: 300; font-size: clamp(3.5rem, 8vw, 7rem); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+    .hero h1 em { font-weight: 400; font-style: italic; color: var(--wine); }
+    .hero-desc { font-size: 1rem; line-height: 1.8; color: var(--muted); font-weight: 300; max-width: 450px; margin: 0 auto 2.5rem; }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; }
+    .btn-dark { font-size: 0.73rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bg); background: var(--dark); text-decoration: none; padding: 1rem 2.2rem; transition: background 0.3s; }
+    .btn-dark:hover { background: var(--wine); }
+    .btn-outline { font-size: 0.73rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark); text-decoration: none; padding: 1rem 2.2rem; border: 1px solid var(--border); transition: all 0.3s; }
+    .btn-outline:hover { border-color: var(--dark); }
+
+    /* SECTION */
+    .section-pad { padding: 7rem 5rem; }
+    .section-label { font-size: 0.63rem; font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase; color: var(--wine); margin-bottom: 1.5rem; }
+    h2.sec-title { font-family: var(--display); font-weight: 300; font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+    h2.sec-title em { font-style: italic; color: var(--wine); }
+
+    /* FEATURES */
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 3rem; }
+    .feature-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .feature-title { font-family: var(--display); font-size: 1.4rem; font-weight: 400; margin-bottom: 0.6rem; }
+    .feature-desc { font-size: 0.82rem; line-height: 1.7; color: var(--muted); font-weight: 300; }
+
+    /* MENU PREVIEW */
+    .menu-preview { background: var(--dark); color: var(--bg); }
+    .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; }
+    .menu-cat-name { font-family: var(--display); font-size: 1.8rem; font-weight: 300; font-style: italic; color: var(--wine); margin-bottom: 2rem; opacity: 0.8; }
+    .menu-cat-name { color: #C27A7A; }
+    .menu-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .menu-name { font-size: 0.9rem; font-weight: 300; }
+    .menu-name small { display: block; font-size: 0.72rem; color: rgba(248,245,240,0.4); margin-top: 0.15rem; }
+    .menu-price { font-family: var(--display); font-size: 1rem; font-style: italic; color: rgba(248,245,240,0.5); }
+
+    /* GALLERY PLACEHOLDER */
+    .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+    .gallery-item { aspect-ratio: 1; background: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 2rem; transition: opacity 0.3s; }
+    .gallery-item:hover { opacity: 0.7; }
+
+    /* RESERVATION */
+    .reservation { text-align: center; background: var(--cream); }
+    .res-form { max-width: 500px; margin: 3rem auto 0; display: grid; gap: 1rem; }
+    .res-form input, .res-form select { font-family: var(--sans); font-size: 0.85rem; padding: 1rem; border: 1px solid var(--border); background: var(--bg); color: var(--dark); outline: none; transition: border-color 0.3s; }
+    .res-form input:focus, .res-form select:focus { border-color: var(--dark); }
+    .res-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .res-form button { font-family: var(--sans); font-size: 0.73rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bg); background: var(--dark); border: none; padding: 1.1rem; cursor: pointer; transition: background 0.3s; }
+    .res-form button:hover { background: var(--wine); }
+
+    /* INFO */
+    .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 3rem; }
+    .info-card { background: var(--bg); padding: 2.5rem; text-align: center; }
+    .info-card h3 { font-family: var(--display); font-size: 1.3rem; font-weight: 400; margin-bottom: 0.8rem; }
+    .info-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+    /* FOOTER */
+    footer { padding: 3rem 5rem; text-align: center; border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--muted); }
+    footer a { color: var(--dark); text-decoration: none; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .section-pad { padding: 4rem 1.5rem; }
+      .features { grid-template-columns: 1fr; gap: 2rem; }
+      .menu-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .info-grid { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; align-items: center; }
+      footer { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">Noma & Thyme</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#info">Visit</a></li>
+    </ul>
+    <a href="#reserve" class="nav-cta">Reserve a Table</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner reveal">
+      <div class="hero-tag">Modern Mediterranean Kitchen</div>
+      <h1>Where every<br>plate tells a <em>story.</em></h1>
+      <p class="hero-desc">Seasonal ingredients, open-fire cooking, and recipes passed down through generations — reimagined for today.</p>
+      <div class="hero-btns">
+        <a href="#reserve" class="btn-dark">Reserve a Table</a>
+        <a href="#menu" class="btn-outline">View Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section-pad" id="about">
+    <div class="section-label reveal">Our Philosophy</div>
+    <h2 class="sec-title reveal">Food cooked with <em>fire & intention.</em></h2>
+    <div class="features">
+      <div class="reveal">
+        <div class="feature-icon">🔥</div>
+        <div class="feature-title">Open Hearth</div>
+        <div class="feature-desc">Every protein and most vegetables touch live flame. Our custom-built hearth is the heart of the kitchen.</div>
+      </div>
+      <div class="reveal">
+        <div class="feature-icon">🌿</div>
+        <div class="feature-title">Seasonal & Local</div>
+        <div class="feature-desc">We source from Bay Area farms weekly. The menu shifts with the seasons — nothing frozen, nothing flown in.</div>
+      </div>
+      <div class="reveal">
+        <div class="feature-icon">🍷</div>
+        <div class="feature-title">Natural Wine</div>
+        <div class="feature-desc">A curated list of minimal-intervention wines from small Mediterranean producers. Ask your server for pairings.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section class="section-pad menu-preview" id="menu">
+    <div class="section-label reveal" style="color: #C27A7A;">The Menu</div>
+    <h2 class="sec-title reveal" style="color: var(--bg);">This week's <em style="color:#C27A7A">selections.</em></h2>
+    <div class="menu-grid">
+      <div class="reveal">
+        <div class="menu-cat-name">Small Plates</div>
+        <div class="menu-row"><div class="menu-name">Whipped Ricotta & Honey<small>Urfa chili, grilled sourdough, pistachio</small></div><div class="menu-price">16</div></div>
+        <div class="menu-row"><div class="menu-name">Grilled Octopus<small>Chickpea purée, preserved lemon, harissa oil</small></div><div class="menu-price">22</div></div>
+        <div class="menu-row"><div class="menu-name">Burrata<small>Heirloom tomato, basil oil, aged balsamic, focaccia</small></div><div class="menu-price">19</div></div>
+        <div class="menu-row"><div class="menu-name">Lamb Meatballs<small>Spiced tomato sugo, feta, mint, warm pita</small></div><div class="menu-price">17</div></div>
+        <div class="menu-row"><div class="menu-name">Roasted Cauliflower<small>Tahini, pomegranate, za'atar, pine nuts</small></div><div class="menu-price">15</div></div>
+      </div>
+      <div class="reveal">
+        <div class="menu-cat-name">Mains</div>
+        <div class="menu-row"><div class="menu-name">Whole Branzino<small>Herb-crusted, fire-roasted, capers, olive oil, lemon</small></div><div class="menu-price">38</div></div>
+        <div class="menu-row"><div class="menu-name">Lamb Shoulder<small>12-hour slow roast, rosemary jus, roasted root vegetables</small></div><div class="menu-price">36</div></div>
+        <div class="menu-row"><div class="menu-name">Saffron Risotto<small>Porcini, truffle oil, parmigiano reggiano</small></div><div class="menu-price">28</div></div>
+        <div class="menu-row"><div class="menu-name">Grilled Hanger Steak<small>Chimichurri, charred broccolini, fingerling potatoes</small></div><div class="menu-price">34</div></div>
+        <div class="menu-row"><div class="menu-name">Wood-Fired Chicken<small>Half bird, za'atar, garlic yogurt, pickled turnip</small></div><div class="menu-price">29</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="gallery">
+      <div class="gallery-item">🍽️</div>
+      <div class="gallery-item" style="background:var(--border)">🔥</div>
+      <div class="gallery-item">🫒</div>
+      <div class="gallery-item" style="background:var(--border)">🍷</div>
+    </div>
+  </section>
+
+  <!-- Reservation -->
+  <section class="section-pad reservation" id="reserve">
+    <div class="section-label reveal">Reservations</div>
+    <h2 class="sec-title reveal">Reserve your <em>table.</em></h2>
+    <p class="reveal" style="font-size:0.9rem;color:var(--muted);font-weight:300;max-width:450px;margin:0 auto;">Walk-ins welcome, but we recommend reserving for dinner service, especially Friday and Saturday evenings.</p>
+    <form class="res-form reveal" onsubmit="return false;">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <div class="row">
+        <input type="date" required>
+        <select required>
+          <option value="" disabled selected>Party Size</option>
+          <option>1-2 guests</option>
+          <option>3-4 guests</option>
+          <option>5-6 guests</option>
+          <option>7+ guests</option>
+        </select>
+      </div>
+      <div class="row">
+        <select required>
+          <option value="" disabled selected>Preferred Time</option>
+          <option>5:30 PM</option>
+          <option>6:00 PM</option>
+          <option>6:30 PM</option>
+          <option>7:00 PM</option>
+          <option>7:30 PM</option>
+          <option>8:00 PM</option>
+          <option>8:30 PM</option>
+          <option>9:00 PM</option>
+        </select>
+        <select>
+          <option value="" disabled selected>Occasion (optional)</option>
+          <option>Birthday</option>
+          <option>Anniversary</option>
+          <option>Date Night</option>
+          <option>Business Dinner</option>
+          <option>Just Because</option>
+        </select>
+      </div>
+      <button type="submit">Request Reservation</button>
+    </form>
+  </section>
+
+  <!-- Info -->
+  <section class="section-pad" id="info">
+    <div class="section-label reveal">Visit Us</div>
+    <h2 class="sec-title reveal">Hours & <em>location.</em></h2>
+    <div class="info-grid reveal">
+      <div class="info-card">
+        <h3>Hours</h3>
+        <p>Tue – Thu: 5:30pm – 10pm<br>Fri – Sat: 5:30pm – 11pm<br>Sun: 5pm – 9:30pm<br>Mon: Closed</p>
+      </div>
+      <div class="info-card">
+        <h3>Location</h3>
+        <p>742 Valencia Street<br>San Francisco, CA 94110<br>Mission District</p>
+      </div>
+      <div class="info-card">
+        <h3>Contact</h3>
+        <p>(415) 555-0142<br>hello@nomaandthyme.com<br>@nomaandthyme</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Noma & Thyme · <a href="#">Privacy</a> · <a href="#">Instagram</a> · Designed by <a href="https://kianix-site.vercel.app">Kianix Studio</a></p>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 50); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.05 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
