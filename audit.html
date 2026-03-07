@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Website Audit — Kianix Studio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--dark:#0a0a0a;--accent:#6c5ce7;--gray:#888;--light:#f8f8f8}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:#fff;min-height:100vh}
+a{color:var(--accent);text-decoration:none}
+
+nav{padding:24px 40px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.06)}
+nav .logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#fff}
+nav .back{font-size:14px;color:var(--gray);transition:.3s}
+nav .back:hover{color:#fff}
+
+.hero{max-width:700px;margin:0 auto;padding:80px 24px;text-align:center}
+.badge{display:inline-block;padding:8px 20px;border-radius:50px;border:1px solid rgba(108,92,231,0.3);background:rgba(108,92,231,0.08);font-size:13px;color:var(--accent);font-weight:500;margin-bottom:24px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:400;line-height:1.2;margin-bottom:16px}
+.hero h1 em{color:var(--accent);font-style:italic}
+.hero p{font-size:17px;color:var(--gray);line-height:1.7;max-width:520px;margin:0 auto 40px}
+
+.form-card{max-width:500px;margin:0 auto;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:36px}
+.form-card label{display:block;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:8px}
+.form-card input{width:100%;padding:14px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-size:15px;font-family:inherit;margin-bottom:16px;transition:.3s}
+.form-card input:focus{outline:none;border-color:var(--accent);background:rgba(108,92,231,0.06)}
+.form-card input::placeholder{color:rgba(255,255,255,0.25)}
+.form-card button{width:100%;padding:16px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;transition:.3s;margin-top:8px}
+.form-card button:hover{background:#5b4bd5;transform:translateY(-1px)}
+.form-card .note{font-size:12px;color:var(--gray);text-align:center;margin-top:16px}
+
+.what-you-get{max-width:700px;margin:60px auto 0;padding:0 24px 80px}
+.what-you-get h2{font-family:'Playfair Display',serif;font-size:28px;text-align:center;margin-bottom:32px}
+.benefits{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.benefit{padding:24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px}
+.benefit .icon{font-size:24px;margin-bottom:12px}
+.benefit h3{font-size:16px;font-weight:600;margin-bottom:6px}
+.benefit p{font-size:14px;color:var(--gray);line-height:1.6}
+
+.social-proof{text-align:center;padding:40px 24px;border-top:1px solid rgba(255,255,255,0.06)}
+.social-proof p{font-size:14px;color:var(--gray)}
+.social-proof span{color:#fff;font-weight:600}
+
+#success{display:none;text-align:center;padding:40px}
+#success h3{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:12px}
+#success p{color:var(--gray);font-size:16px}
+
+@media(max-width:600px){
+  .benefits{grid-template-columns:1fr}
+  .hero{padding:60px 20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">kianix.</a>
+  <a href="/" class="back">← Back to studio</a>
+</nav>
+
+<section class="hero">
+  <div class="badge">✦ 100% Free — No Strings Attached</div>
+  <h1>Get a free <em>website audit</em> in 24 hours.</h1>
+  <p>Enter your website URL and email. We'll analyze your site's performance, mobile experience, SEO, and design — and send you a detailed report with actionable fixes.</p>
+</section>
+
+<div class="form-card" id="auditForm">
+  <label>Your Website URL</label>
+  <input type="url" id="siteUrl" placeholder="https://yourbusiness.com" required>
+  <label>Your Email</label>
+  <input type="email" id="email" placeholder="you@yourbusiness.com" required>
+  <label>Your Name (optional)</label>
+  <input type="text" id="name" placeholder="Jane">
+  <button onclick="submitAudit()">Get My Free Audit →</button>
+  <p class="note">We'll email your audit within 24 hours. No spam, no sales calls.</p>
+</div>
+
+<div id="success">
+  <h3>✓ Audit requested!</h3>
+  <p>We'll analyze your site and email you a detailed report within 24 hours.<br>Keep an eye on your inbox.</p>
+</div>
+
+<section class="what-you-get">
+  <h2>What you'll get.</h2>
+  <div class="benefits">
+    <div class="benefit">
+      <div class="icon">⚡</div>
+      <h3>Performance Score</h3>
+      <p>How fast your site loads and what's slowing it down. Speed = customers staying.</p>
+    </div>
+    <div class="benefit">
+      <div class="icon">📱</div>
+      <h3>Mobile Check</h3>
+      <p>How your site looks and works on phones. 60%+ of visitors are on mobile.</p>
+    </div>
+    <div class="benefit">
+      <div class="icon">🔍</div>
+      <h3>SEO Analysis</h3>
+      <p>Can Google find you? We check meta tags, headings, structure, and indexability.</p>
+    </div>
+    <div class="benefit">
+      <div class="icon">🎨</div>
+      <h3>Design Review</h3>
+      <p>Honest feedback on your visual design, UX, and what could look better.</p>
+    </div>
+  </div>
+</section>
+
+<section class="social-proof">
+  <p>Built by <span>Kianix Studio</span> — modern web design for businesses that want to stand out.</p>
+</section>
+
+<script>
+function submitAudit() {
+  const url = document.getElementById('siteUrl').value;
+  const email = document.getElementById('email').value;
+  const name = document.getElementById('name').value;
+  
+  if(!url || !email) { alert('Please enter your website URL and email.'); return; }
+  
+  // Send to our webhook/email
+  const data = { url, email, name, timestamp: new Date().toISOString() };
+  
+  // Store in localStorage as backup
+  const audits = JSON.parse(localStorage.getItem('audit_requests') || '[]');
+  audits.push(data);
+  localStorage.setItem('audit_requests', JSON.stringify(audits));
+  
+  // Send via mailto link as fallback (we'll set up a proper backend later)
+  const subject = encodeURIComponent('New Audit Request: ' + url);
+  const body = encodeURIComponent('URL: ' + url + '\nEmail: ' + email + '\nName: ' + name);
+  
+  // Use a simple form submission to a Google Form or email
+  fetch('https://formsubmit.co/ajax/kianix@kianix.design', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ url: url, email: email, name: name, _subject: 'New Audit Request: ' + url })
+  }).catch(() => {});
+  
+  document.getElementById('auditForm').style.display = 'none';
+  document.getElementById('success').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
